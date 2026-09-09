@@ -2224,11 +2224,13 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_bool(lt::settings_pack::enable_incoming_utp, true);
         settingsPack.set_bool(lt::settings_pack::enable_outgoing_utp, true);
         settingsPack.set_int(lt::settings_pack::utp_target_delay, 2000);
-        settingsPack.set_int(lt::settings_pack::utp_gain_factor, 12000);
-        settingsPack.set_int(lt::settings_pack::utp_loss_multiplier, 90);
-        settingsPack.set_int(lt::settings_pack::utp_min_timeout, 100);
-        settingsPack.set_int(lt::settings_pack::utp_num_resends, 6);
-        settingsPack.set_int(lt::settings_pack::utp_syn_resends, 4);
+        settingsPack.set_int(lt::settings_pack::utp_gain_factor, 10000);
+        settingsPack.set_int(lt::settings_pack::utp_loss_multiplier, 50);
+        settingsPack.set_int(lt::settings_pack::utp_min_timeout, 500);
+		settingsPack.set_int(lt::settings_pack::utp_syn_resends, 2);
+        settingsPack.set_int(lt::settings_pack::utp_num_resends, 3);
+        settingsPack.set_int(lt:settings_pack::utp_connect_timeout, 3000);
+        settingsPack.set_int(lt:settings_pack::utp_cwnd_reduce_timer, 100);
         break;
     }
 
