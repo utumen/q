@@ -319,9 +319,7 @@ void PeerListWidget::showPeerListMenu()
         action->setToolTip(tooltip);
     };
 
-    if (torrent->isPrivate())
-        disableAction(addNewPeer, tr("Cannot add peers to a private torrent"));
-    else if (torrent->isChecking())
+    if (torrent->isChecking())
         disableAction(addNewPeer, tr("Cannot add peers when the torrent is checking"));
     else if (torrent->isQueued())
         disableAction(addNewPeer, tr("Cannot add peers when the torrent is queued"));
