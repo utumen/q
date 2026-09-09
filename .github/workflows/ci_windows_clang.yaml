@@ -18,7 +18,7 @@ env:
   qt_ver: '6.12'
   boost_ver: '1.92.0'
   vcvarsall: 'C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-  CFLAGS: '/nologo /O3 /Ot /Gw /bigobj /utf-8 /JMC- /W0 /D NDEBUG /D _WIN32_WINNT=0x0A00'
+  CFLAGS: '/nologo /O2 /Ot /Gw /bigobj /utf-8 /JMC- /W0 /D NDEBUG /D _WIN32_WINNT=0x0A00'
   LDFLAGS: '/NOLOGO /Brepro /OPT:REF,ICF /RELEASE'
   CLANG: '"C:/Program Files/LLVM/bin/clang-cl.exe"'
   CLANG_FLAGS: '-flto=full /clang:-fuse-ld=lld'
