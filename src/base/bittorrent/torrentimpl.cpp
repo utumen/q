@@ -739,11 +739,6 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
     m_nativeHandle.replace_trackers(nativeTrackers);
     m_announceStatus.reset();
 
-    // Clear the peer list if it's a private torrent since
-    // we do not want to keep connecting with peers from old tracker.
-    if (isPrivate())
-        clearPeers();
-
     deferredRequestResumeData();
     m_session->handleTorrentTrackersReset(this, oldEntries, trackers);
 }
@@ -839,11 +834,6 @@ void TorrentImpl::removeUrlSeeds(const QList<QUrl> &urlSeeds)
         }
         catch (const std::exception &) {}
     });
-}
-
-void TorrentImpl::clearPeers()
-{
-    m_nativeHandle.clear_peers();
 }
 
 bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
