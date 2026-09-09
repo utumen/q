@@ -296,7 +296,6 @@ namespace BitTorrent
         virtual void addUrlSeeds(const QList<QUrl> &urlSeeds) = 0;
         virtual void removeUrlSeeds(const QList<QUrl> &urlSeeds) = 0;
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
-        virtual void clearPeers() = 0;
         virtual void setMetadata(const TorrentInfo &torrentInfo) = 0;
 
         virtual StopCondition stopCondition() const = 0;
