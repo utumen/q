@@ -18,10 +18,9 @@ env:
   qt_ver: '6.12'
   boost_ver: '1.92.0'
   vcvarsall: 'C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-  CFLAGS: '/nologo /O2 /Ot /bigobj /utf-8 /JMC- /W0 /D NDEBUG /D _WIN32_WINNT=0x0A00'
-  LDFLAGS: '/NOLOGO /RELEASE'
+  CFLAGS: '/nologo /O2 /Ot /bigobj /utf-8 /JMC- /W0 /D NDEBUG /D _WIN32_WINNT=0x0A00 -flto=full'
+  LDFLAGS: '/NOLOGO /RELEASE -fuse-ld=lld -flto=full'
   CLANG: '"C:/Program Files/LLVM/bin/clang-cl.exe"'
-  CLANG_FLAGS: '-flto=full /clang:-fuse-ld=lld'
 
 jobs:
   delete-caches:
@@ -57,7 +56,7 @@ jobs:
         if: steps.cache-zlib.outputs.cache-hit != 'true'
         env:
           CC: ${{ env.CLANG }}
-          CFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3
+          CFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3
         run: |
           call "${{ env.vcvarsall }}" amd64 ${{ env.winsdk_ver }}
           curl.exe --output zlib.tar.gz --location "https://github.com/zlib-ng/zlib-ng/archive/refs/tags/${{ env.zlib_ver }}.tar.gz"
@@ -149,8 +148,8 @@ jobs:
         env:
           CC: ${{ env.CLANG }}
           CXX: ${{ env.CLANG }}
-          CFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
-          CXXFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
+          CFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
+          CXXFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
         run: |
           call "${{ env.vcvarsall }}" amd64 ${{ env.winsdk_ver }}
           mkdir qt_build
@@ -193,8 +192,8 @@ jobs:
           ASFLAGS: /guard:ehcont
           CC: ${{ env.CLANG }}
           CXX: ${{ env.CLANG }}
-          CFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3 /D BOOST_NO_DEPRECATED /D BOOST_SYSTEM_NO_DEPRECATED
-          CXXFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3 /D BOOST_NO_DEPRECATED /D BOOST_SYSTEM_NO_DEPRECATED
+          CFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3 /D BOOST_NO_DEPRECATED /D BOOST_SYSTEM_NO_DEPRECATED
+          CXXFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3 /D BOOST_NO_DEPRECATED /D BOOST_SYSTEM_NO_DEPRECATED
         run: |
           call "${{ env.vcvarsall }}" amd64 ${{ env.winsdk_ver }}
           curl.exe --output boost.tar.gz --location "https://github.com/boostorg/boost/releases/download/boost-${{ env.boost_ver }}/boost-${{ env.boost_ver }}-cmake.tar.gz"
@@ -245,8 +244,8 @@ jobs:
         env:
           CC: ${{ env.CLANG }}
           CXX: ${{ env.CLANG }}
-          CFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3
-          CXXFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3
+          CFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3
+          CXXFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3
         run: |
           call "${{ env.vcvarsall }}" amd64 ${{ env.winsdk_ver }}
           cd libtorrent_source
@@ -308,8 +307,8 @@ jobs:
         env:
           CC: ${{ env.CLANG }}
           CXX: ${{ env.CLANG }}
-          CFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
-          CXXFLAGS: ${{ env.CFLAGS }} ${{ env.CLANG_FLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
+          CFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
+          CXXFLAGS: ${{ env.CFLAGS }} /clang:-march=x86-64-v3 /D QT_NO_EXCEPTIONS /D QT_NO_DEBUG
           LDFLAGS: ${{ env.LDFLAGS }} /MANIFEST:NO
         run: |
           call "${{ env.vcvarsall }}" amd64 ${{ env.winsdk_ver }}
