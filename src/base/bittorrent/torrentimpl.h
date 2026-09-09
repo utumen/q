@@ -234,7 +234,6 @@ namespace BitTorrent
         void addUrlSeeds(const QList<QUrl> &urlSeeds) override;
         void removeUrlSeeds(const QList<QUrl> &urlSeeds) override;
         bool connectPeer(const PeerAddress &peerAddress) override;
-        void clearPeers() override;
         void setMetadata(const TorrentInfo &torrentInfo) override;
 
         StopCondition stopCondition() const override;
