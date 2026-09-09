@@ -2226,6 +2226,13 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         break;
     }
 
+    settingsPack.set_int(lt::settings_pack::utp_target_delay, 2000);
+    settingsPack.set_int(lt::settings_pack::utp_gain_factor, 12000);
+    settingsPack.set_int(lt::settings_pack::utp_loss_multiplier, 90);
+    settingsPack.set_int(lt::settings_pack::utp_min_timeout, 100);
+    settingsPack.set_int(lt::settings_pack::utp_num_resends, 6);
+    settingsPack.set_int(lt::settings_pack::utp_syn_resends, 4);
+
     switch (utpMixedMode())
     {
     case MixedModeAlgorithm::TCP:
