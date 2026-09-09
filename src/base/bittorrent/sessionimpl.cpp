@@ -2223,6 +2223,8 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_bool(lt::settings_pack::enable_outgoing_tcp, false);
         settingsPack.set_bool(lt::settings_pack::enable_incoming_utp, true);
         settingsPack.set_bool(lt::settings_pack::enable_outgoing_utp, true);
+        settingsPack.set_int(lt::settings_pack::utp_target_delay, 2000);
+        settingsPack.set_int(lt::settings_pack::max_peer_recv_buffer_size, 5 * 1024 * 1024);
         break;
     }
 
