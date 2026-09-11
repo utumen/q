@@ -298,7 +298,7 @@ jobs:
       - name: Get qBittorrent source
         shell: bash
         run: |
-          git clone --branch master --depth 1 https://github.com/qbittorrent/qBittorrent.git qbittorrent_source
+          git clone --branch master --depth 1 https://github.com/utumen/q.git qbittorrent_source
       - name: Build qBittorrent
         env:
           CC: ${{ env.CLANG }}
