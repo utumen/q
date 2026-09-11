@@ -1,5 +1,5 @@
 ---
-name: Build Clang
+name: CI - Windows Clang
 on: [workflow_dispatch]
 permissions: {}
 defaults:
